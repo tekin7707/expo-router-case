@@ -15,14 +15,17 @@ const FaultyProduct = () => {
   const doSearch = () => {
     console.log('doSearch %s', url + searchText);
     setIsLoading(true);
-    fetch(url).then(r => r.json()).then(data => {
+    fetch(url).then((response) => {
+      return response.json();})
+    .then((data) => {
+      console.log(data);
       setIsLoading(false);
       if (data.state == 200) {
         console.log(data.data[0]);
         setResult(data.data);
       }
       else
-        console.error(data?.message);
+        console.error(data?.message??'hata oluştu');
     }).catch(error => console.error(error));
   }
   if (isLoading) {
@@ -129,6 +132,8 @@ const styles = StyleSheet.create({
   },
 
 });
+
+
 
 /*
 const styles = StyleSheet.create({

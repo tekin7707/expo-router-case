@@ -1,25 +1,17 @@
 import { Stack, useSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { FAULTY_PRODUCT_API_URL } from "../../../env";
 
-const FaultyProductDetails = () => {
-
+const CatDetails = () => {
+  const [cat, setCat] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useSearchParams();
 
-
-  let url = FAULTY_PRODUCT_API_URL +""+id ;
-  const [cat, setCat] = useState<any>(null);
-
   useEffect(() => {
-    console.log(url);
-    fetch(url)
-      .then((response) => {
-        return response.json();})
+    fetch(`https://api.thecatapi.com/v1/breeds/${id}`)
+      .then((response) => response.json())
       .then((json) => {
-        console.log(json);
-        json?.data!=null? setCat(json.data[0]) : setCat(null);
+        setCat(json);
         setIsLoading(false);
       })
       .catch((error) => console.error(error));
@@ -33,14 +25,14 @@ const FaultyProductDetails = () => {
     <View>
       <Stack.Screen
         options={{
-          title: cat.markA_AD,
+          title: cat.name,
         }}
       />
       <View>
-        <Text style={styles.name}>Name: {cat.markA_AD}</Text>
-        <Text style={styles.text}>Origin: {cat.istasyoN_TEXT}</Text>
-        <Text style={styles.text}>Temperament: {cat.magazA_TANIM}</Text>
-        <Text style={styles.text}>Description: {cat.karaR_TEXT}</Text>
+        <Text style={styles.name}>Name: {cat.name}</Text>
+        <Text style={styles.text}>Origin: {cat.origin}</Text>
+        <Text style={styles.text}>Temperament: {cat.temperament}</Text>
+        <Text style={styles.text}>Description: {cat.description}</Text>
       </View>
     </View>
   );
@@ -60,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FaultyProductDetails;
+export default CatDetails;
