@@ -8,20 +8,6 @@ export default function AppLayout() {
         headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="faulty-product"
-        options={{
-          title: "Faulty Product",
-          tabBarIcon: () => <Text>🐰</Text>,
-        }}
-      />
-      <Tabs.Screen
-        name="kvkk"
-        options={{
-          title: "Kvkk",
-          tabBarIcon: () => <Text>🐶</Text>,
-        }}
-      />
     </Tabs>
   );
 }

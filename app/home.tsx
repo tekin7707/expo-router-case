@@ -1,22 +1,10 @@
-import { View, Text, Platform, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
-import { Link } from 'expo-router';
 
 const Home = () => {
     return (
         <View style={styles.container}>
-            {Platform.OS === 'web' ? (
                 <Text>Menü içermez.</Text>
-            ) : (
-                <>
-                    <Link href="/kvkk" style={styles.link}>
-                        <Text style={styles.buttonText}>Kvkk</Text>
-                    </Link>
-                    <Link href="/faulty-product" style={styles.link}>
-                        <Text style={styles.buttonText}>Faulty Product</Text>
-                    </Link>
-                </>
-            )}
         </View>
     );
 };
